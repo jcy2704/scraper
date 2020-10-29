@@ -14,30 +14,50 @@ end
 # Scrape
 class Scraper < ScrapeSite
   def initialize
-    super('https://en.wikipedia.org/wiki/List_of_international_schools')
+    super("https://helmboots.com/collections/shop?page=#{@page}")
   end
 
   def scrape
     newsite = Parser.new
-    site = newsite.parse_page(@url)
     @items_list = []
-    items = site.css('div.schools_per_country')
-
-    items.each do |listing|
-      @item = {
-        'country' => listing.css('span.mw-headline').text,
-        'name' => listing.css('li.school').text.split("\n"),
-        'url' => "https://en.wikipedia.org#{listing.css('a')[0].attributes['href'].value}"
-      }
-      @item['name'].delete('')
-      puts "Added #{@item['country']} #{@item['name']}"
+    @prices = []
+    @page = 1
+    while @page <= 2
+      puts "Looking in page #{@page}"
+      url = "https://helmboots.com/collections/shop?page=#{@page}"
+      site = newsite.parse_page(url)
+      puts url
       puts ''
-      @items_list << @item
+      items = site.css('div.grid-view-item')
+
+      items.each do |listing|
+        @item = {
+          'product' => listing.css('div.libre').text,
+          'price' => listing.css('span.product-price__price').text.split("\n\s\s\s\s\s\s"),
+          'sale' => listing.css('span.product-price__sale-label').text,
+          'url' => "https://helmboots.com#{listing.css('a')[0].attributes['href'].value}"
+        }
+        @item['price'].delete("Sale\n\s\s\s\s")
+        @item['price'].delete('')
+        @item['price'] = @item['price'].pop
+        if @item['price'].nil?
+          @item.delete('product')
+          @item.delete('sale')
+          @item.delete('url')
+          @item.delete('price')
+        end
+        @prices << @item['price']
+        puts "Added #{@item['product']} #{@item['price']} #{@item['sale']}"
+        puts ''
+        @items_list << @item
+        @items_list.delete({})
+      end
+      @page += 1
     end
     @items_list
   end
 
-  def by_country(input = nil)
-    puts "These are the schools from #{@items_list}"
+  def items_count
+    @items_list.count
   end
 end
