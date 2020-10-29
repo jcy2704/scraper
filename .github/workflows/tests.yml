@@ -14,7 +14,7 @@ jobs:
       - name: Setup RSpec
         run: |
           bundle update --bundler
-          gem install bundler:2.1.4
+          gem install bundler
           [ -f Gemfile ] && bundle --deployment
           gem install --no-document rspec:'~>3.0'
       - name: RSpec Report
