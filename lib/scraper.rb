@@ -2,20 +2,9 @@ require 'nokogiri'
 require 'httparty'
 require_relative './parser'
 
-# Scrapesite
-class ScrapeSite
-  attr_accessor :url
-
-  def initialize(url)
-    @url = url
-  end
-end
-
 # Scrape
-class Scraper < ScrapeSite
-  def initialize
-    super("https://helmboots.com/collections/shop?page=#{@page}")
-  end
+class Scraper
+  def initialize; end
 
   def scrape
     newsite = Parser.new
@@ -61,6 +50,15 @@ class Scraper < ScrapeSite
     @items_list.count
   end
 
+  def format_all
+    @items_list.each do |item|
+      puts "Product: #{item['product']}"
+      puts "Price: #{item['price']}"
+      puts "#{item['sale']}: Yes" unless item['sale'] == ''
+      puts ''
+    end
+  end
+
   def sort_prices
     @prices.delete(nil)
     @prices = @prices.map { |n| n.gsub('$', '').to_i }
@@ -69,6 +67,7 @@ class Scraper < ScrapeSite
   end
 
   def by_price(value)
+    value = value.to_i
     sort_prices
     @prices = @prices.select { |price| price >= value }
     # @item['price'] = @item['price'].gsub('$', '').to_i
@@ -78,6 +77,30 @@ class Scraper < ScrapeSite
         puts "#{item['product']} #{item['price']}\n\n" if item['price'] == "$#{@prices[i]}"
       end
       i += 1
+    end
+  end
+
+  def menu
+    puts "1. All Products\n2. By Price\n3. Exit"
+    puts ''
+    puts 'What would you like to do?'
+    response = gets.chomp
+
+    if response.include?('1')
+      system 'clear'
+      system 'cls'
+      format_all
+      menu
+    elsif response.include?('2')
+      system 'clear'
+      system 'cls'
+      puts 'Please input your minimum price.'
+      value = gets.chomp
+      by_price(value)
+      menu
+    elsif response.include?('3')
+      puts 'Have a nice day! :D'
+      exit
     end
   end
 end
