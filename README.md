@@ -46,6 +46,7 @@ Originally, a **scraper** is a tool used to extract something on a surface, for 
 
 ## 📐 About The Project
 I created this basic web scraper to get information from products in an e-commerce website.
+I used https://helmboots.com for this project.
 
 The scraper has a basic interface that runs in the terminal.
 
