@@ -60,4 +60,11 @@ class Scraper < ScrapeSite
   def items_count
     @items_list.count
   end
+
+  def sort_prices
+    @prices.delete(nil)
+    @prices = @prices.map { |n| n.gsub('$', '').to_i }
+    @prices = @prices.sort.uniq
+    @prices
+  end
 end
