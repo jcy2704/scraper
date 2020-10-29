@@ -42,7 +42,6 @@
 ## ⚒️ Scraper
 Originally, a **scraper** is a tool used to extract something on a surface, for example, a chewing gum from the floor. However, in this case we are using a Web Scraper. A **Web Scraper** or **Web Crawler**, is used to extract bits of information from a website to analize them.
 
-
 <hr>
 
 ## 📐 About The Project
@@ -146,7 +145,7 @@ After verifying you have ruby installed and completing the [Installation](#insta
 To be able to test your code with Rspec, you should have Ruby and Rspec installed in your computer. To install rspec type in your terminal `gem install rspec`. After installing rspec, just got to the project folder and run `rspec` in the terminal.
 
 ### 📶 Live Preview
-[Scraper](https://repl.it/@jcy2704/tic-tac-toe#bin/tictactoe.rb)
+[Scraper](https://repl.it/@jcy2704/scraper#bin/scraper.rb)
 
 **Enjoy our project!!**
 
