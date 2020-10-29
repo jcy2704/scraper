@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'httparty'
-gem 'nokogiri'
+platform :mswin, :mingw, :x64_mingw do
+  gem 'httparty'
+  gem 'nokogiri'
+end
