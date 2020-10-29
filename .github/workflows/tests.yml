@@ -15,5 +15,6 @@ jobs:
         run: |
           [ -f Gemfile ] && bundle config set deployment 'true'
           gem install --no-document rspec:'~>3.9'
+          bundle install
       - name: RSpec Report
         run: rspec --force-color --format documentation
