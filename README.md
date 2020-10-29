@@ -119,11 +119,11 @@ To get a local copy up and running follow these simple example steps.
 Computer running Mac OS, Windows, or Linux Ubuntu.
 Internet browser: Firefox, Google Chrome, Opera...
 
-Have Ruby installed you can see this link for more detailed instructions [Install Ruby](https://www.theodinproject.com/courses/web-development-101/lessons/installing-ruby)
+Have Ruby installed you can see this link for more detailed instructions [Install Ruby](https://www.theodinproject.com/courses/ruby-programming/lessons/installing-ruby-ruby-programming)
 
 ### Installation
 
-You MUST have Ruby installed in your system. If you don't have it installed you can go this page [Install Ruby](https://www.theodinproject.com/courses/web-development-101/lessons/installing-ruby)
+You MUST have Ruby installed in your system. If you don't have it installed you can go this page [Install Ruby](https://www.theodinproject.com/courses/ruby-programming/lessons/installing-ruby-ruby-programming)
 
 After installing ruby, you can download the repo or clone it (paste on the terminal) `git clone https://github.com/jcy2704/scraper.git`
 
