@@ -3,6 +3,6 @@
 require_relative '../lib/parser'
 require_relative '../lib/scraper'
 
-news = CourseSite.new
+put = Scraper.new
 
-puts news.scrape
+put.scrape

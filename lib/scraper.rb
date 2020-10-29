@@ -2,7 +2,7 @@ require 'nokogiri'
 require 'httparty'
 require_relative './parser'
 
-# site
+# Scrapesite
 class ScrapeSite
   attr_accessor :url
 
@@ -11,28 +11,33 @@ class ScrapeSite
   end
 end
 
-# course Site
-class CourseSite < ScrapeSite
+# Scrape
+class Scraper < ScrapeSite
   def initialize
-    super('https://www.coursera.org/courses')
+    super('https://en.wikipedia.org/wiki/List_of_international_schools')
   end
 
   def scrape
     newsite = Parser.new
     site = newsite.parse_page(@url)
-    courses_list = []
-    courses = site.css('li.ais-InfiniteHits-item')
+    @items_list = []
+    items = site.css('div.schools_per_country')
 
-    courses.each do |listing|
-      course = {
-        title: listing.css('h2.card-title').text,
-        partner: listing.css('span.partner-name').text,
-        type: listing.css('div.product-type-row').text,
-        level: listing.css('span.difficulty').text,
-        url: "https://www.coursera.org#{courses.css('a')[0].attributes['href'].value}"
+    items.each do |listing|
+      @item = {
+        'country' => listing.css('span.mw-headline').text,
+        'name' => listing.css('li.school').text.split("\n"),
+        'url' => "https://en.wikipedia.org#{listing.css('a')[0].attributes['href'].value}"
       }
-      courses_list << course
+      @item['name'].delete('')
+      puts "Added #{@item['country']} #{@item['name']}"
+      puts ''
+      @items_list << @item
     end
-    courses_list
+    @items_list
+  end
+
+  def by_country(input = nil)
+    puts "These are the schools from #{@items_list}"
   end
 end
