@@ -67,4 +67,17 @@ class Scraper < ScrapeSite
     @prices = @prices.sort.uniq
     @prices
   end
+
+  def by_price(value)
+    sort_prices
+    @prices = @prices.select { |price| price >= value }
+    # @item['price'] = @item['price'].gsub('$', '').to_i
+    i = 0
+    while i <= @prices.length
+      @items_list.each do |item|
+        puts "#{item['product']} #{item['price']}\n\n" if item['price'] == "$#{@prices[i]}"
+      end
+      i += 1
+    end
+  end
 end
