@@ -1,4 +1,4 @@
-# rubocop:disable Metrics/MethodLength, Metrics/AbcSize
+# rubocop:disable Metrics/MethodLength
 
 require 'nokogiri'
 require 'httparty'
@@ -59,4 +59,4 @@ class Scraper
   end
 end
 
-# rubocop:enable Metrics/MethodLength, Metrics/AbcSize
+# rubocop:enable Metrics/MethodLength
