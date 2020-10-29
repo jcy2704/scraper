@@ -13,6 +13,7 @@ GEM
       mini_portile2 (~> 2.4.0)
 
 PLATFORMS
+  ruby
   x64-mingw32
 
 DEPENDENCIES
