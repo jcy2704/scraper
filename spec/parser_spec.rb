@@ -1,5 +1,6 @@
 require 'nokogiri'
 require_relative '../lib/parser'
+require_relative './spec_helper.rb'
 
 describe Parser do
   let(:mock_url) { 'https://example.com/' }
