@@ -13,8 +13,9 @@ jobs:
           ruby-version: 2.7.x
       - name: Setup RSpec
         run: |
+          sudo gem install bundler
           [ -f Gemfile ] && bundle config set deployment 'true'
           gem install --no-document rspec:'~>3.9'
-          bundle install
+          sudo bundle install
       - name: RSpec Report
         run: rspec --force-color --format documentation
