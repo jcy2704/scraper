@@ -1,4 +1,5 @@
 require 'nokogiri'
+require 'httparty'
 require_relative '../lib/scraper_class'
 require_relative './spec_helper'
 
