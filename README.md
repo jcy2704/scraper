@@ -74,8 +74,8 @@ What would you like to do?
 ...
 ```
 
-- 1. Will show a formatted list with all the products and prices as well as if the product is on sale or not.
-- 2. Will ask you to input a minimum price and it will show results starting from the minimum price.
+- Option 1. Will show a formatted list with all the products and prices as well as if the product is on sale or not.
+- Option 2. Will ask you to input a minimum price and it will show results starting from the minimum price.
 
 For example:
 ```
@@ -91,7 +91,7 @@ Price: $300
 ```
 
 - After finishing showing the results it will prompt the menu once again so you can choose what you want to do.
-- 3. Will exit the program.
+- Option 3. Will exit the program.
 
 ```
 1. Show all Products
