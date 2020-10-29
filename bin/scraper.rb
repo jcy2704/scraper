@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+# rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+
 require_relative '../lib/parser'
 require_relative '../lib/scraper_class'
 
@@ -81,3 +83,5 @@ puts ''
 puts ''
 
 menu
+
+# rubocop:enable Metrics/AbcSize, Metrics/MethodLength
