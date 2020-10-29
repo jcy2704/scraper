@@ -1,3 +1,5 @@
+# rubocop:disable Metrics/MethodLength, Metrics/AbcSize
+
 require 'nokogiri'
 require 'httparty'
 require_relative './parser'
@@ -74,14 +76,15 @@ class Scraper
     i = 0
     while i <= @prices.length
       @items_list.each do |item|
-        puts "#{item['product']} #{item['price']}\n\n" if item['price'] == "$#{@prices[i]}"
+        puts "Product: #{item['product']}\nPrice: #{item['price']}\n\n" if item['price'] == "$#{@prices[i]}"
+        puts "#{item['sale']}: Yes" unless item['sale'] == ''
       end
       i += 1
     end
   end
 
   def menu
-    puts "1. All Products\n2. By Price\n3. Exit"
+    puts "1. Show All Products\n2. Products By Price\n3. Exit"
     puts ''
     puts 'What would you like to do?'
     response = gets.chomp
@@ -104,3 +107,5 @@ class Scraper
     end
   end
 end
+
+# rubocop:enable Metrics/MethodLength, Metrics/AbcSize
