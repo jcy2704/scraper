@@ -16,16 +16,21 @@ sleep 2
 
 puts 'Please wait for the scraper to finish...'
 
-@peppermint = @pepper.scrape
+@pepper.scrape
+
+private
 
 def format_all
-  @peppermint.each do |item|
+  @pepper.items_list.each do |item|
     puts "Product: #{item['product']}"
     puts "Price: #{item['price']}"
     puts "#{item['sale']}: Yes" unless item['sale'] == ''
+    sleep 0.1
     puts ''
   end
 end
+
+public
 
 def menu
   puts "1. Show All Products\n2. Products By Price\n3. Exit"
@@ -43,8 +48,8 @@ def menu
     system 'cls'
     puts 'Please input your minimum price.'
     value = gets.chomp
-    @handle = @pepper.by_price(value)
-    if @handle == 'Invalid Option'
+    handle = @pepper.by_price(value)
+    if handle == 'Invalid Option'
       puts ''
       puts "Sorry we dont't have items with such price :C"
       puts ''
@@ -61,18 +66,24 @@ def menu
   end
 end
 
+private
+
 def by_price
   i = 0
-  while i <= @handle.length
-    @peppermint.each do |item|
-      puts "Product: #{item['product']}\nPrice: #{item['price']}\n\n" if item['price'] == "$#{@handle[i]}"
+  while i <= @pepper.prices.length
+    @pepper.items_list.each do |item|
+      puts "Product: #{item['product']}\nPrice: #{item['price']}\n\n" if item['price'] == "$#{@pepper.prices[i]}"
+      sleep 0.1
     end
     i += 1
   end
 end
 
-@peppermint.each do |items|
+public
+
+@pepper.items_list.each do |items|
   puts "Added #{items['product']} #{items['price']}"
+  sleep 0.2
   puts ''
 end
 

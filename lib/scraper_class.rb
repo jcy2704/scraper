@@ -6,12 +6,15 @@ require_relative './parser'
 
 # Scrape
 class Scraper
-  def initialize; end
+  attr_reader :items_list, :prices
+
+  def initialize
+    @items_list = []
+    @prices = []
+  end
 
   def scrape
     newsite = Parser.new
-    @items_list = []
-    @prices = []
     @page = 1
     while @page <= 2
       url = "https://helmboots.com/collections/shop?page=#{@page}"
@@ -25,26 +28,42 @@ class Scraper
           'sale' => listing.css('span.product-price__sale-label').text,
           'url' => "https://helmboots.com#{listing.css('a')[0].attributes['href'].value}"
         }
-        @item['price'].delete("Sale\n\s\s\s\s")
-        @item['price'].delete('')
-        @item['price'] = @item['price'].pop
-        if @item['price'].nil?
-          @item.delete('product')
-          @item.delete('sale')
-          @item.delete('url')
-          @item.delete('price')
-        end
+        format_price
+        delete_useless
         @prices << @item['price']
         @items_list << @item
         @items_list.delete({})
       end
       @page += 1
     end
+    prices_list
+    @items_list
+  end
+
+  private
+
+  def format_price
+    @item['price'].delete("Sale\n\s\s\s\s")
+    @item['price'].delete('')
+    @item['price'] = @item['price'].pop
+  end
+
+  def delete_useless
+    if @item['price'].nil?
+      @item.delete('product')
+      @item.delete('sale')
+      @item.delete('url')
+      @item.delete('price')
+    end
+  end
+
+  def prices_list
     @prices.delete(nil)
     @prices = @prices.map { |n| n.gsub('$', '').to_i }
     @prices = @prices.sort.uniq
-    @items_list
   end
+
+  public
 
   def items_count
     @items_list.count
