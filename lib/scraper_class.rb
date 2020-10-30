@@ -29,7 +29,7 @@ class Scraper
           'url' => "https://helmboots.com#{listing.css('a')[0].attributes['href'].value}"
         }
         format_price
-        delete_useless
+        delete_useless if @item['price'].nil?
         @prices << @item['price']
         @items_list << @item
         @items_list.delete({})
@@ -49,12 +49,10 @@ class Scraper
   end
 
   def delete_useless
-    if @item['price'].nil?
-      @item.delete('product')
-      @item.delete('sale')
-      @item.delete('url')
-      @item.delete('price')
-    end
+    @item.delete('product')
+    @item.delete('sale')
+    @item.delete('url')
+    @item.delete('price')
   end
 
   def prices_list

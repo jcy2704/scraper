@@ -11,19 +11,19 @@ describe Scraper do
 
   describe '#format_price' do
     it 'raise error for private methods' do
-      expect{mock_scraper.format_price}.to raise_error(NoMethodError, /private method/)
+      expect{ mock_scraper.format_price }.to raise_error(NoMethodError, /private method/)
     end
   end
 
   describe '#delete_useless' do
     it 'raise error for private methods' do
-      expect{mock_scraper.delete_useless}.to raise_error(NoMethodError, /private method/)
+      expect{ mock_scraper.delete_useless }.to raise_error(NoMethodError, /private method/)
     end
   end
 
   describe '#prices_list' do
     it 'raise error for private methods' do
-      expect{mock_scraper.prices_list}.to raise_error(NoMethodError, /private method/)
+      expect{ mock_scraper.prices_list }.to raise_error(NoMethodError, /private method/)
     end
   end
 
