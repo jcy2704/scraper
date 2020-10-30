@@ -129,6 +129,9 @@ You MUST have Ruby installed in your system. If you don't have it installed you 
 After installing ruby, you can download the repo or clone it (paste on the terminal) `git clone https://github.com/jcy2704/scraper.git`
 
 ## 💻 Run Scraper
+
+Open the terminal and install `bundler` with `gem install bundler`. After installing `bundler`, navigate to the folder containing the files you've cloned and enter `bundle install` to install the necessary gems to run the scraper.
+
 You will need to execute the scraper file located inside the bin folder. If you are using Window, follow next step.
 
 ### Windows
